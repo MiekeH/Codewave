@@ -16,7 +16,7 @@ public class PriceList {
 	}
 	
 	public PriceList(double ballPrice, double rocketPrice, double magnumStandardPrice) {
-		this.ballPrice = ballPrice;
+		this.setBallPrice(ballPrice);
 		this.rocketPrice = rocketPrice;
 		this.magnumStandardPrice = magnumStandardPrice;
 	}
@@ -47,7 +47,7 @@ public class PriceList {
 	public double getMagnumPrice(MagnumType magnumType) {
 		double priceOfMagnum;
 		priceOfMagnum = magnumType.getMagnumTypeExtraPrice()*this.magnumStandardPrice;
-		System.out.println("Magnum" +magnumType+ "=" +magnumType.getMagnumTypeExtraPrice()*this.magnumStandardPrice);
+		//System.out.println("Magnum" +magnumType+ "=" +magnumType.getMagnumTypeExtraPrice()*this.magnumStandardPrice);
 		return priceOfMagnum;
 		}
 		

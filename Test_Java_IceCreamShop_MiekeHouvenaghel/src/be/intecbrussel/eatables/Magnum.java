@@ -14,13 +14,11 @@ public class Magnum implements Eatable {
 	}
 	
 	public void eat() {
-		System.out.println("You are eating a Magnumtype:" +getType() + " with extra pricefactor of " +this.type.getMagnumTypeExtraPrice());
+		System.out.println("You are eating a Magnum " +getType());
 	}
 	
 	
 	public MagnumType getType() {
-		//Magnum.MagnumType type = MagnumType.values();
-		//return this.type = Magnum.MagnumType.valueOf(type);
 		return this.type;
 			
 	}
@@ -28,7 +26,7 @@ public class Magnum implements Eatable {
 	
 	public enum MagnumType {
 						
-		MILKCHOCOLATE(1.20),WHITECHOCOLATE(1.30),BLACKCHOCOLATE(1.50),ALPINENUTS(1.25),ROMANTICSTRAWBERRIES(1.6);
+		MILKCHOCOLATE(1.20),WHITECHOCOLATE(1.30),BLACKCHOCOLATE(1.50),ALPINENUTS(1.25),ROMANTICSTRAWBERRIES(1.5);
 		
 		private double magnumTypeExtraPrice;
 		

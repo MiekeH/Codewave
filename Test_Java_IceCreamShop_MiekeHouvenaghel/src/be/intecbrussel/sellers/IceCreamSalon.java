@@ -7,63 +7,48 @@ import be.intecbrussel.eatables.Magnum;
 import be.intecbrussel.eatables.Magnum.MagnumType;
 
 public class IceCreamSalon implements IceCreamSeller {
-	//??? number of ijsjes countOfIceCreamCordered
-	
+	//Comment MSH: countOfIceCreamOrdered not captured; link methods with getProfit(); initial ProfitValue of the shop?
+	//Constructor added to capture totalProfit to link with IceCreamSeller interface
 	private PriceList priceList;
 	private double totalProfit;
 	
 	public IceCreamSalon(PriceList priceList) {
 		this.priceList = priceList;
 	}
-	
-	public double getProfit() {
-		int coneProfit = this.orderCone(cone).getCountOfBalls()*priceList.getBallPrice();
-		int iceRocketProfit = orderIceRocket()*priceList.getRocketPrice();
-		int magnumProfit = orderMagnum(magnum)*priceList.getMagnumPrice(magnum);
-		double totalProfit = coneProfit + iceRocketProfit + magnumProfit;
-		return this.totalProfit;
+
+	public IceCreamSalon(PriceList priceList, double totalProfit) {
+		this.priceList = priceList;
+		this.setProfit(totalProfit);
+	}
+
+	public void setProfit(double totalProfit){
+		this.totalProfit = totalProfit;
 	}
 		
-	
-	//TO DO add price from order using profitList to totalProfit
-	public Cone orderCone(Flavor[] balls) {
-		Flavor [] flavor = new Flavor[Cone.Flavor.values().length];
-		Cone cone = new Cone(flavor);
-		
-//		double increaseProfit(PriceList priceList) {
-//		int coneBalls = this.orderCone(flavor).getCountOfBalls();
-//		double coneProfit = coneBalls*priceList.getBallPrice();
-//		}
-//		public double coneProfit(PriceList priceList){
-//		double coneProfit = getProfit() + this.orderCone(balls).getCountOfBalls()*priceList.getBallPrice();
-//		return coneProfit;
-//		}
-//		
-		return cone;
-		}
+	public double getProfit() {
+		return this.totalProfit;
+	}
 
-	
+	public Cone orderCone(Flavor[] balls) {
+		Cone cone = new Cone(balls);
+		this.totalProfit = (balls.length) * priceList.getBallPrice();
+		return cone;
+	}
+
 	public IceRocket orderIceRocket() {
 		IceRocket iceRocket = new IceRocket();
+		this.totalProfit = priceList.getRocketPrice();
 		return iceRocket;
-		
-		
 	}
 	
 	public Magnum orderMagnum(MagnumType magnumType) {
 		Magnum magnum = new Magnum(magnumType);
-		//Magnum.MagnumType magnumType = Magnum.MagnumType.values();
+		this.totalProfit = priceList.getMagnumPrice(magnumType);
 		return magnum;
 	}
 
 	
-	
-	@Override
-	public String toString() {
-		return "IceCreamSalon [priceList=" + priceList + ", totalProfit=" + totalProfit + "]";
-	}
-	
-	
+
 	
 	
 }

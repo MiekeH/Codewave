@@ -13,36 +13,22 @@ import be.intecbrussel.sellers.PriceList;
 public class IceCreamApp {
 
 	public static void main(String[] args) {
-		
-		PriceList priceList = new PriceList(2.20, 3.25, 3.50);
-		IceCreamSalon iceCreamSalon = new IceCreamSalon(priceList);
-		IceCreamSeller iceCreamSeller = new IceCreamSalon(priceList);
-		//ijsjes bestellen
-		Magnum myMagnum = new Magnum(MagnumType.MILKCHOCOLATE);
-		myMagnum.eat();
-		iceCreamSalon.orderMagnum(MagnumType.MILKCHOCOLATE).eat();
+		//Comment MSH: Flavor [] balls = {Cone.Flavor.STRACIATELLA,Cone.Flavor.MOKKA,Cone.Flavor.MOKKA};
+		//Cone myCone = new Cone(balls);
+		//Eatable array not complete;
+		PriceList priceList = new PriceList(1, 2, 3);
+		IceCreamSalon iceCreamSalon = new IceCreamSalon(priceList,50);
+		IceCreamSeller iceCreamSeller = new IceCreamSalon(priceList,50);
 				
-		Flavor [] balls = {Cone.Flavor.STRACIATELLA,Cone.Flavor.MOKKA,Cone.Flavor.MOKKA};
-		Cone myCone = new Cone(balls);
-		myCone.eat();
 		iceCreamSalon.orderCone(new Flavor[]{Cone.Flavor.STRACIATELLA, Cone.Flavor.MOKKA}).eat();
+		iceCreamSalon.orderIceRocket().eat();
+		iceCreamSalon.orderMagnum(MagnumType.ROMANTICSTRAWBERRIES).eat();
 				
-		IceRocket iceRocket = new IceRocket();
-		iceCreamSalon.orderIceRocket();
-		iceRocket.eat();
-
-		
-		System.out.println(priceList.getBallPrice());
-		System.out.println(priceList.getRocketPrice());
-		System.out.println(priceList.getMagnumPrice(Magnum.MagnumType.ROMANTICSTRAWBERRIES));		
-		//call up toStringmethod in iceCreamSalon
-		System.out.println(iceCreamSalon);
-		//Array of Eatable
-		Eatable[] eatable = new Eatable[]{myCone,myMagnum,iceRocket};
-		//print out the Profit of the IceCreamSeller
+		//Eatable[] eatable = new Eatable[]{cone,magnum,iceRocket};
+			
 		System.out.println(iceCreamSeller.getProfit());	
 		
-
+		
 		
 	}
 
