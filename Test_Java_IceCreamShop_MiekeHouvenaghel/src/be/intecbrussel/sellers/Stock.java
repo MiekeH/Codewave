@@ -7,6 +7,14 @@ public class Stock {
 	private int magni;
 	
 	
+	public Stock (int iceRockets, int cones, int balls, int magni) {
+		this.iceRockets = iceRockets;
+		this.cones = cones;
+		this.balls = balls;
+		this.magni = magni;
+	}
+	
+	
 	public int getIceRockets() {
 		return iceRockets;
 	}

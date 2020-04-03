@@ -5,11 +5,11 @@ import java.util.Arrays;
 import be.intecbrussel.eatables.Cone.Flavor;
 
 public class Cone implements Eatable {
-	//Comment/Question: MSH: added a countOfBalls, as assumed one cone can have multiple balls,...not sure if also had to add another count
-	// calculating the number of Cones instantiated
+	//Comment MSH: used balls.length to capture number of balls ordered per cone...not sure if also had to add another count for
+	// calculating the number of Cones instantiated, added this in the constructor, but not used.
 	
 	Flavor[] balls;
-	int countOfBalls = 1;
+	int countOfCones = 1;
 
 	public Cone () {
 		
@@ -18,18 +18,18 @@ public class Cone implements Eatable {
 	public Cone (Flavor[] balls) {
 		this.balls = new Flavor[Flavor.values().length];
 		this.balls = balls;
-		countOfBalls++;
+		countOfCones++;
 	}
 	
 	
 	public void eat() {
 		System.out.println("You are eating a Cone with " +
-	this.countOfBalls +" balls" +" with the exotic flavours of" + Arrays.toString(this.balls));
+	this.balls.length +" balls" +" with the exotic flavours of" + Arrays.toString(this.balls));
 		
 	}
 		
-	public int getCountOfBalls () {
-		return this.countOfBalls;
+	public int getCountOfCones () {
+		return this.countOfCones;
 	}
 	
 	public enum Flavor {

@@ -11,8 +11,8 @@ public interface IceCreamSeller extends Profitable {
 
 	public double getProfit();
 		
-	public Cone orderCone(Flavor[] balls);
-	public IceRocket orderIceRocket();
-	public Magnum orderMagnum(MagnumType type);
+	public Cone orderCone(Flavor[] balls) throws NoMoreIceCreamException;
+	public IceRocket orderIceRocket() throws NoMoreIceCreamException;
+	public Magnum orderMagnum(MagnumType type) throws NoMoreIceCreamException;
 	
 }

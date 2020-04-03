@@ -15,18 +15,22 @@ public class IceCreamApp {
 	public static void main(String[] args) {
 		//Comment MSH: Flavor [] balls = {Cone.Flavor.STRACIATELLA,Cone.Flavor.MOKKA,Cone.Flavor.MOKKA};
 		//Cone myCone = new Cone(balls);
-		//Eatable array not complete;
+		
 		PriceList priceList = new PriceList(1, 2, 3);
 		IceCreamSalon iceCreamSalon = new IceCreamSalon(priceList,50);
-		IceCreamSeller iceCreamSeller = new IceCreamSalon(priceList,50);
+		IceCreamSeller iceCreamSeller = new IceCreamSalon(priceList, 50);
 				
 		iceCreamSalon.orderCone(new Flavor[]{Cone.Flavor.STRACIATELLA, Cone.Flavor.MOKKA}).eat();
 		iceCreamSalon.orderIceRocket().eat();
 		iceCreamSalon.orderMagnum(MagnumType.ROMANTICSTRAWBERRIES).eat();
 				
-		//Eatable[] eatable = new Eatable[]{cone,magnum,iceRocket};
+		Eatable[] eatable = new Eatable[3];
+		eatable[0] = new Cone();
+		eatable[1] = new IceRocket();
+		eatable[2] = new Magnum();
+				
+		System.out.println(iceCreamSalon.getProfit());
 			
-		System.out.println(iceCreamSeller.getProfit());	
 		
 		
 		

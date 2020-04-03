@@ -7,8 +7,9 @@ import be.intecbrussel.eatables.Magnum;
 import be.intecbrussel.eatables.Magnum.MagnumType;
 
 public class IceCreamSalon implements IceCreamSeller {
-	//Comment MSH: countOfIceCreamOrdered not captured; link methods with getProfit(); initial ProfitValue of the shop?
-	//Constructor added to capture totalProfit to link with IceCreamSeller interface
+	/*Comment MSH: number of IceCreams ordered not captured
+	 * Added extra constructor to initialize initial value of Profit of IceCreamShop
+	 */
 	private PriceList priceList;
 	private double totalProfit;
 	
@@ -24,26 +25,26 @@ public class IceCreamSalon implements IceCreamSeller {
 	public void setProfit(double totalProfit){
 		this.totalProfit = totalProfit;
 	}
-		
+	
 	public double getProfit() {
 		return this.totalProfit;
 	}
 
 	public Cone orderCone(Flavor[] balls) {
 		Cone cone = new Cone(balls);
-		this.totalProfit = (balls.length) * priceList.getBallPrice();
+		this.totalProfit += (balls.length) * priceList.getBallPrice();
 		return cone;
 	}
 
 	public IceRocket orderIceRocket() {
 		IceRocket iceRocket = new IceRocket();
-		this.totalProfit = priceList.getRocketPrice();
+		this.totalProfit = this.totalProfit+ priceList.getRocketPrice();
 		return iceRocket;
 	}
 	
 	public Magnum orderMagnum(MagnumType magnumType) {
 		Magnum magnum = new Magnum(magnumType);
-		this.totalProfit = priceList.getMagnumPrice(magnumType);
+		this.totalProfit += priceList.getMagnumPrice(magnumType);
 		return magnum;
 	}
 
