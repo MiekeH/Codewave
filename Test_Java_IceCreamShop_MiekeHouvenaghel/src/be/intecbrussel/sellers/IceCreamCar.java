@@ -25,6 +25,29 @@ public class IceCreamCar implements IceCreamSeller {
 	}
 	
 	public Cone orderCone (Flavor[] balls) throws NoMoreIceCreamException {
+//		try {
+//			if ((stock.getCones() == 0) || (balls.length) >= (stock.getBalls())) {
+//				throw new NoMoreIceCreamException("No more stock of cones or exotic balls,...prepare the stock");
+//			}
+//
+//		} catch (NoMoreIceCreamException nmice) {
+//			System.out.println(nmice.getMessage());
+//			throw nmice;
+//		}
+//
+//		finally {
+		prepareCone(balls);
+//		}
+		
+		Cone cone = new Cone(balls);
+		this.profit += (balls.length) * priceList.getBallPrice();
+		stock.setBalls(stock.getBalls()-balls.length);
+		stock.setCones(stock.getCones()-1);
+		return cone;
+	}
+
+	private Cone prepareCone(Flavor[] balls) throws NoMoreIceCreamException {
+		Cone cone = new Cone(balls);
 		try {
 			if ((stock.getCones() == 0) || (balls.length) >= (stock.getBalls())) {
 				throw new NoMoreIceCreamException("No more stock of cones or exotic balls,...prepare the stock");
@@ -34,20 +57,7 @@ public class IceCreamCar implements IceCreamSeller {
 			System.out.println(nmice.getMessage());
 			throw nmice;
 		}
-
-		finally {
-		prepareCone(balls);
-		}
-		
-		Cone cone = new Cone(balls);
-		this.profit += (balls.length) * priceList.getBallPrice();
-		stock.setBalls(stock.getBalls()-balls.length);
-		stock.setCones(stock.getCones()-1);
-		return cone;
-	}
-
-	private Cone prepareCone(Flavor[] balls) {
-		Cone cone = new Cone(balls);
+			
 		if ((stock.getCones() == 0) || (balls.length) >= (stock.getBalls())) {
 			stock.setBalls(stock.getBalls() + 25);
 			stock.setCones(stock.getCones() + 10);
