@@ -67,59 +67,79 @@ public class IceCreamCar implements IceCreamSeller {
 	}
 
 	public IceRocket orderIceRocket() throws NoMoreIceCreamException {
-		try {
-		prepareIceRocket();
-		}
-		
-		catch (NoMoreIceCreamException nmice) {
-		System.out.println(nmice.getMessage());
-		throw nmice;
-		}
-		IceRocket iceRocket = new IceRocket();
+//		try {
+//		prepareIceRocket();
+//		}
+//		
+//		catch (NoMoreIceCreamException nmice) {
+//		System.out.println(nmice.getMessage());
+//		throw nmice;
+//		}
+//		IceRocket iceRocket = new IceRocket();
+//		stock.setIceRockets(stock.getIceRockets()-1);
 		this.profit += priceList.getRocketPrice();
-		stock.setIceRockets(stock.getIceRockets()-1);
-		return iceRocket;
+		return prepareIceRocket();
 	}
 	
 	private IceRocket prepareIceRocket() throws NoMoreIceCreamException  {
-		IceRocket iceRocket = new IceRocket();
-		if (this.stock.getIceRockets() == 0) {
+		if (this.stock.getIceRockets() < 1) {
 		throw new NoMoreIceCreamException("There are no more IceRockets in stock");
 		}
+		
 		stock.setIceRockets(stock.getIceRockets() + 10);
+		
+		IceRocket iceRocket = new IceRocket();
+		stock.setIceRockets(stock.getIceRockets()-1);
+		
 		return iceRocket;
 		
 	}
 	
 	public Magnum orderMagnum(MagnumType type) throws NoMoreIceCreamException {
-		try {
+//		try {
+//		
+//		if (this.stock.getMagni() == 0) {
+//		throw new NoMoreIceCreamException("Damn, there are no more magni in stock, please supply immediately");
+//		}
+//		}
+//		
+//		catch (NoMoreIceCreamException nmice) {
+//			System.out.println(nmice.getMessage());
+//			throw nmice;
+//		}
 		
-		if (this.stock.getMagni() == 0) {
-		throw new NoMoreIceCreamException("Damn, there are no more magni in stock, please supply immediately");
-		}
-		}
-		
-		catch (NoMoreIceCreamException nmice) {
-			System.out.println(nmice.getMessage());
-			throw nmice;
-		}
-		
-		finally {
-		prepareMagnum(type);
-		}
+//		finally {
+//		prepareMagnum(type);
+//		}
 		
 		this.profit += priceList.getMagnumPrice(type);
-		Magnum magnum = new Magnum(type);
-		stock.setMagni(stock.getMagni()-1);
+		Magnum magnum = prepareMagnum(type);
+//		Magnum magnum = new Magnum(type);
+//		stock.setMagni(stock.getMagni()-1);
 		return magnum;
 	
 	}
 	
-	private Magnum prepareMagnum(MagnumType type) {
+	private Magnum prepareMagnum(MagnumType type) throws NoMoreIceCreamException {
+		try {
+			
+			if (this.stock.getMagni() == 0) {
+			throw new NoMoreIceCreamException("Damn, there are no more magni in stock, please supply immediately");
+			}
+			}
+			
+			catch (NoMoreIceCreamException nmice) {
+				System.out.println(nmice.getMessage());
+//				throw nmice;
+				nmice.printStackTrace();
+			}
+			
+		
 		if(this.stock.getMagni() == 0) {
 		stock.setMagni(stock.getMagni() + 15);
 		}
 		Magnum magnum = new Magnum(type);
+		stock.setMagni(stock.getMagni()-1);
 		return magnum;	
 	}
 	

@@ -26,6 +26,7 @@ public class IceCreamApp2 {
 	iceCreamCar.orderIceRocket().eat();
 	iceCreamCar.orderMagnum(Magnum.MagnumType.ALPINENUTS).eat();
 	
+		
 	Eatable[] eatable = new Eatable[3];
 	eatable[0] = new Cone();
 	eatable[1] = new IceRocket();
