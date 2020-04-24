@@ -1,26 +1,36 @@
 package cookingMagazine;
 
+import java.util.List;
+
 public class Recipe {
 
 	private String nameOfRecipe;
 	private AuthorOfRecipe author;
-	private IngredientsType ingredients;
+	private List<Object> ingredients;
 	private String instructions;
 
 	public Recipe() {
 
 	}
 
-	public Recipe(String nameOfRecipe, IngredientsType ingredients) {
+	public Recipe(String nameOfRecipe, List<Object> ingredients) {
 		this(nameOfRecipe, null, ingredients, null);
 
 	}
 
-	public Recipe(String nameOfRecipe, AuthorOfRecipe author, IngredientsType ingredients, String instructions) {
+	public Recipe(String nameOfRecipe, AuthorOfRecipe author, List<Object> ingredients, String instructions) {
 		this.nameOfRecipe = nameOfRecipe;
 		this.author = author;
 		this.ingredients = ingredients;
 		this.instructions = instructions;
+	}
+
+	public List<Object> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Object> ingredients) {
+		this.ingredients=ingredients;
 	}
 
 	class AuthorOfRecipe {
@@ -48,17 +58,25 @@ public class Recipe {
 			this.lastName = lastName;
 		}
 
-		
-	
-	@Override
+		@Override
 		public String toString() {
-			return "Recipe [nameOfRecipe=" + nameOfRecipe + ", authorOfRecipe=" + getFirstName() + "" + getLastName()
-					+ ", ingredients=" + ingredients + ", instructions=" + instructions + "]";
+			return "AuthorOfRecipe [firstName=" + firstName + ", lastName=" + lastName + "]";
 		}
 
+		
 	}
 
+	@Override
+	public String toString() {
+		return "Recipe [nameOfRecipe=" + nameOfRecipe + ", author=" + author + ", ingredients=" + ingredients
+				+ ", instructions=" + instructions + "]";
+	}
+		
+
+
 	
+
+
 
 
 }

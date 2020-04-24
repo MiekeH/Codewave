@@ -8,9 +8,6 @@ public class CookingMagazine implements Comparable<CookingMagazine>{
 	private LocalDateTime monthPublished;
 	private String author;
 	private String titleOfMagazine;
-	//private String countryPublished;
-	//private String namePublisher;
-	//private boolean inColour = true;
 	
 	private CookingCategory category;
 	private CookingStyle style;
@@ -27,6 +24,7 @@ public class CookingMagazine implements Comparable<CookingMagazine>{
 	public CookingMagazine(String name, String titleOfMagazine,LocalDateTime monthPublished, String author, CookingCategory category,CookingStyle style, 
 		CookingMethod method,Recipe recipe) {
 	this.name = name;
+	this.titleOfMagazine=titleOfMagazine;
 	this.monthPublished = monthPublished;
 	this.author = author;
 	this.category = category;
@@ -39,18 +37,25 @@ public class CookingMagazine implements Comparable<CookingMagazine>{
 		return this.name;
 	}
 
+	public String getTitleOfMagazine() {
+		return this.titleOfMagazine;
+	}
 	
 	public CookingCategory getCategory() {
 		return this.category;
 	}
 	
 	
+	public void printIngredients() {
+		this.recipe.getIngredients().forEach(System.out :: println);
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "CookingMagazine [name=" + name +": "+ titleOfMagazine + " " +"issued on " + monthPublished + " " +"by" + this.author
-				+ ", category=" + category + ", Cookingstyle= " + style +" " + method
-				+ "dish:"
-				+ ", recipe=" + recipe + "]";
+		return "CookingMagazine [name=" + name + ", monthPublished=" + monthPublished + ", author=" + author
+				+ ", titleOfMagazine=" + this.getTitleOfMagazine() + ", category=" + category + ", style=" + style + ", method="
+				+ method + ", recipe=" + recipe + "]";
 	}
 
 	@Override
