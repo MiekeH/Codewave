@@ -74,6 +74,14 @@ public class Recipe {
 		
 
 
+//
+//    @Override
+//    public String toString() {
+//
+//        return String.format("%n%s%n%s%nrecipe by%s%nList of ingredients%n%n%s%n%nInstructions%n%s%n",
+//               "-".repeat(30),name,  author,printMap(), instructions);
+//    }
+
 	
 
 

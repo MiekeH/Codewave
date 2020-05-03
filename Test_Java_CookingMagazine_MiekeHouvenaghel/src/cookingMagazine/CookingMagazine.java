@@ -1,6 +1,8 @@
 package cookingMagazine;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class CookingMagazine implements Comparable<CookingMagazine>{
 
@@ -58,6 +60,15 @@ public class CookingMagazine implements Comparable<CookingMagazine>{
 				+ method + ", recipe=" + recipe + "]";
 	}
 
+	//Nicer coding of toString method:used a Set<Recipe recipe in declaration
+//	@Override
+//    public String toString() {
+//        return String.format("CookingMagazine '%s'%n%s",
+//                name, ((Collection<Object>) recipe).stream().map(Recipe::toString).collect(Collectors.joining("\n")));
+//    }
+
+	
+	
 	@Override
 	public int compareTo(CookingMagazine cookingMagazine) {
 		return this.name.compareTo(cookingMagazine.name); 

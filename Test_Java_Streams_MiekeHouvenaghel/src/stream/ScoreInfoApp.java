@@ -38,6 +38,7 @@ public class ScoreInfoApp {
 	System.out.println("Print high scores----------");
 	List<ScoreInfo> list2 = Arrays.stream(score).filter(i->i.getScore()>=90).collect(Collectors.toList());
 	System.out.println(list2);
+	
 	si.filterScore();
 	
 	System.out.println("Print data by score----------");

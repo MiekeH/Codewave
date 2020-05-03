@@ -1,6 +1,14 @@
 package be.intec.brussel.lambdatest.model;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.Random;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class SensorMeasurement {
 	private BigDecimal humidity;
@@ -13,76 +21,88 @@ public class SensorMeasurement {
 		this.temperature = temperature;
 	}
 	
-	public BigDecimal getHumidity() {
-		return this.humidity;
+	public double getHumidity() {
+		//add formatting to double value?
+		return this.humidity.doubleValue();
 	}
 
-	public BigDecimal getLightIntensity() {
-		return lightintensity;
+	public double getLightIntensity() {
+		//add formatting
+		return lightintensity.doubleValue();
 	}
 
-	public BigDecimal getTemperatureCelsius() {
-		return this.temperature;
+	//converted to double value
+	public double getTemperatureCelsius() {
+		//add formatting
+		return this.temperature.doubleValue();
 	}
 
-	public void setScaleTemperature(BigDecimal temperatureCelsius) {
-	this.temperature.scale();
-	//hoe min en max 
-	
-	}
-	
-	
-	
-	
-	public BigDecimal getTemperatureFahrenheit() {
-		BigDecimal temperatureCelsius = this.temperature;
-		BigDecimal temperatureFahrenheit = temperatureCelsius.multiply((1.8)).plus(32);
+	public double getTemperatureFahrenheit() {
+		double temperatureFahrenheit = (getTemperatureCelsius() * 1.8) + (32);
 		return temperatureFahrenheit;
 	}
 	
 	//maakt een array aan met numberOfMeasurments willekeurige Measurement objecten
-	
 	public SensorMeasurement[] generateMeasurementArray(int numberOfMeasurements) {
+		final MeasurementGenerator generator = new RandomMeasurementGenerator();
 		SensorMeasurement[] sensorMeasurement = new SensorMeasurement[numberOfMeasurements];
-		for (int i = 0; i < numberOfMeasurements; i++) {
-			sensorMeasurements[i] = randy.nextInt(numberOfMeasurements) + 1;
+		for (int i = 0; i < sensorMeasurement.length; i++) {
+			//sensorMeasurement[i] = Random.nextInt(numberOfMeasurements) + 1;
+			sensorMeasurement[i] = generator.generateMeasurement();
 		}
-
-		// invullen met willekeurige objecten van randomgenerator
 		return sensorMeasurement;
 	}
 
-	// print print de hoogste temperatuur af in celcius en Fahrenheit
-	//BigDecimal max(temperature)?
 	public void printHighestTemperature(SensorMeasurement[] sensor) {
-		//nakijken in de loop, dan kijken welke de grootste en afprinten
-		for(SensorMeasurement[] sensor: ) {
-			if(((Object) temperature).isHighest()) {
-				System.out.println(temperature);
-			}
-		}
-		
-		
-			}
-			
-	// sorteert de array volgens oplopende lichtintensiteit. Tot slot print hij ze
-	// af //anonymous geneste classe
-	// compare method
-	public void printSortedByLightIntensity(SensorMeasurement[] sensor) {
+	Optional<SensorMeasurement> numberMaxTC= Stream.of(sensor)
+				.filter(s->s.getTemperatureCelsius())
+				.max();
+	
+	Optional<SensorMeasurement> max = Arrays
+            .stream(measurements)
+            .max(Comparator.comparing(measurement -> measurement.getTemperature(true)));
 
+    max.ifPresent(measurement ->
+            out.println("The highest temperature is " +
+                    df2.format(measurement.getTemperature(true).doubleValue()) +
+                    " in fahrenheits, " +
+                    df2.format(measurement.getTemperature(false).doubleValue()) +
+                    " in celsius"));
+	(numberMaxTC.isPresent() ? numberMaxTC.getAsDouble() :"no values");
+	
+	OptionalInt numberMaxTF= Stream.of(sensor)
+			.filter(s->s.getTemperatureFahrenheit())
+			.max();
+	(numberMaxTF.isPresent() ? numberMaxTF.getAsDouble() :"no values");
+	
 	}
 
-	// measurement Array om naar een String array.
-	public String[] mapToInfoString(SensorMeasurement[] sensor) {
+	public void printSortedByLightIntensity(final SensorMeasurement[] sensor) {
+		Stream.of(sensor)
+		.sorted(Comparator.comparingDouble(SensorMeasurement::getLightIntensity));
+		
+		Arrays.stream(sensor).forEach(System.out::println);
+	}
 
-		return -1;
+	
+	public String[] mapToInfoString(SensorMeasurement[] sensor) {
+		String[] mapToInfoString = 
+				(String[]) Stream.of(sensor)
+				.map(s-> (s.getHumidity() + " " 
+						+ s.getLightIntensity()+ " "+s.getTemperatureCelsius() ))
+				
+				.toArray(String[]::new);
+		
+		return mapToInfoString;
 	}
 
 	public void printAverageTemperature(SensorMeasurement[] sensor) {
-
+		OptionalDouble avg = Stream.of(sensor)
+				.mapToDouble(s-> s.getTemperatureCelsius())
+				.average();
+		System.out.println(avg.isPresent() ? avg.getAsDouble() : "Not available");
 	}
-	
-		
+			
 	@Override
 	public String toString() {
 		return "SensorMeasurement [humidity= %" + humidity + ", temperature=" + temperature + ", lightintensity="

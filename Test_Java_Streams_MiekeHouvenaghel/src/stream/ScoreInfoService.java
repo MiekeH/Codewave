@@ -44,6 +44,7 @@ public class ScoreInfoService {
 		IntStream filterScore = Stream.of(scoreData)
 				.filter(a-> a.getScore()>=90)
 				.mapToInt(ScoreInfo::getScore);
+		
 		//other coding possible:return type should then be Long
 //		return Arrays
 //                .stream(this.scoreData)
