@@ -39,9 +39,7 @@ public class AccountingServices {
 	
 	}
 	
-	public Employee addEmployeeData () throws SQLException {
-		//Employee employeeNew = new Employee();
-		
+	public Employee addEmployeeData () throws SQLException, ParseException {
 		System.out.println("Enter employeeID");
 		
 		int employeeId = Integer.parseInt(getInput());
@@ -62,18 +60,21 @@ public class AccountingServices {
         
         System.out.println("Enter Employee mobile phone_ICE :");
         String phoneNumber_ICE = getInput();
-        Date birthday;
+        
+        
+        System.out.println(" Employee Date of Birth (MM-DD-YYYY) : ");
+        Date dateOfBirth = (Date) sdf.parse(getInput());
 		
         //employeeNew.getDateOfBirth().isBefore(LocalDate.now().minusMonths(18*12));
         
-        try {
-			birthday = (Date) sdf.parse(getInput());
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-            
-        System.out.println(" Employee Date of Birth (MM-DD-YYYY) : ");
+//        try {
+//			dateOfBirth = (Date) sdf.parse(getInput());
+//			
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//            
+      
         System.out.println("Enter Employee salary (month) :");
         
         Double salaryMonth = Double.parseDouble(getInput());
@@ -82,7 +83,7 @@ public class AccountingServices {
         	System.out.println("Salary should be positive figure, please insert new number");
         };
 		
-		return employeeDao.insertEmployeeData(firstName,lastName, phoneNumber,phoneNumber_ICE, birthday, salaryMonth);
+		return employeeDao.insertEmployeeData(firstName,lastName, phoneNumber,phoneNumber_ICE, dateOfBirth, salaryMonth);
 		
 		
 	}

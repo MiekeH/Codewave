@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +55,7 @@ public class EmployeeDAO {
 		ps.setString(2, lastName);
 		ps.setString(3, phoneNumber);
 		ps.setString(4, phoneNumber_ICE);
-		ps.setDate(5, (Date) dateOfBirth);
+		ps.setDate(5, dateOfBirth);
 		ps.setDouble(6, salaryMonth);
 		ps.setInt(7, employeeId);
 		ps.executeUpdate();
@@ -67,7 +65,7 @@ public class EmployeeDAO {
 	}
 
 	public Employee insertEmployeeData(String firstName, String lastName, String phoneNumber, String phoneNumber_ICE,
-			java.util.Date dateOfBirth, double salaryMonth) throws SQLException {
+			Date dateOfBirth, double salaryMonth) throws SQLException {
 
 		Employee employeeNew = new Employee();
 
@@ -79,7 +77,7 @@ public class EmployeeDAO {
 		ps.setString(2, lastName);
 		ps.setString(3, phoneNumber);
 		ps.setString(4, phoneNumber_ICE);
-		ps.setDate(5, (Date) dateOfBirth);
+		ps.setDate(5, dateOfBirth);
 		ps.setDouble(6, salaryMonth);
 		ps.executeUpdate();
 

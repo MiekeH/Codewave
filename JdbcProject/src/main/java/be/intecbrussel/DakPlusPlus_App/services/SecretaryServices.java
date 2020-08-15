@@ -33,9 +33,9 @@ public class SecretaryServices {
 	}
 	
 	public static List<Employee> getBirthdayEmployees() {
-		List<Employee> employeeBirthDay= (List<Employee>) employeeDao.getAllEmployees()
+		Stream<Employee> employeeBirthDay= employeeDao.getAllEmployees()
 				.stream()
-				.filter(x->x.employee.getDateOfBirth()==LocalDate.now());
+				.filter(x->x.employee.getDateOfBirth().toLocalDate() ==LocalDate.now());
 						
 	return employeeBirthDay;
 	}
@@ -53,7 +53,7 @@ public class SecretaryServices {
 				.stream()
 				//.filter(x->x.ChronoUnit.DAYS.between(Date.valueOf(employee.getDateOfBirth()), nowDate) <= 7);
 		
-				.filter(x->x.employee.getDateOfBirth().isAfter(LocalDate.now().plusDays(7)));
+				.filter(x->x.employee.getDateOfBirth().toLocalDate().isAfter(LocalDate.now().plusDays(7)));
 	return employeeBirthDay;
 	}
       	

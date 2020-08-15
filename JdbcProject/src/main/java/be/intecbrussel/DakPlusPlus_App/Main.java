@@ -26,6 +26,12 @@ public class Main {
 		
 		//Note: some methods are not completely working as had to perform parsing from String to LocalDate to Dates 
 		
+		
+		//check functionality//
+		
+		
+		
+		
 		System.out.println("Hi - Good Day - THIS IS YOUR APPLICATION DATABASE:");
 			
 		showRentabilityMenu();

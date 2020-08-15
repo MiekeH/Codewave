@@ -31,7 +31,7 @@ public class WorkDoneDAO {
 			WorkDone workDone = new WorkDone();
 			workDone.setEmployeeId(rs.getInt("employee_id"));
 			workDone.setProjectId(rs.getInt("project_id"));
-			workDone.setWorkDoneDate(rs.getDate("date"));
+			workDone.setWorkDoneDate(rs.getDate("date").toLocalDate());
 			workDone.setHoursWorked(rs.getInt("hoursworked"));
 			workDone.setRemarks(rs.getString("remarks"));
 
@@ -40,7 +40,7 @@ public class WorkDoneDAO {
 		return listOfProjectEmployees;
 	}
 
-	public WorkDone insertData(LocalDate workDoneDate, int hoursWorked, String remarks, int employeeId, int projectId) {
+	public WorkDone insertData(LocalDate workDoneDate, int hoursWorked, String remarks, int employeeId, int projectId) throws SQLException {
 		WorkDone workdoneNew = new WorkDone();
 		Connection connection = ConnectionFactory.getConnection();
 		String sqlInsert = "INSERT INTO WorkDone VALUES (?,?,?,?,?)";
@@ -48,10 +48,10 @@ public class WorkDoneDAO {
 		PreparedStatement ps = connection.prepareStatement(sqlInsert);
 		ps.setInt(1, employeeId);
 		ps.setInt(2, projectId);
-		ps.setDate(3, workDoneDate);
+		ps.setDate(3, java.sql.Date.valueOf(workDoneDate));
 		ps.setInt(4, hoursWorked);
 		ps.setString(5, remarks);
-				
+			
 		ps.executeUpdate();
 		return workdoneNew;
 		

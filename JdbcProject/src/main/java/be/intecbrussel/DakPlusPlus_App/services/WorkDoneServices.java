@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import be.intecbrussel.DakPlusPlus_App.data.WorkDoneDAO;
-import be.intecbrussel.DakPlusPlus_App.model.Employee;
-import be.intecbrussel.DakPlusPlus_App.model.Project;
 import be.intecbrussel.DakPlusPlus_App.model.WorkDone;
 
 public class WorkDoneServices {
@@ -16,13 +14,16 @@ public class WorkDoneServices {
 		return workDoneDao.getProjectsEmployees();
 	}
 	
-	public Project addWorkDoneData () throws SQLException {
+	public WorkDone addWorkDoneData () throws SQLException {
 		UserInputServices userInput = new UserInputServices();
 		String remarks = userInput.requestWorkDoneRemarks();
-		int projectId;
+		int projectId = userInput.requestProjectId(); 
+		
 		int hoursWorked = userInput.requestHoursWorked(projectId);
 		LocalDate workDoneDate =userInput.requestWorkDoneDate();
-		int employeeId;
+		
+		
+		int employeeId = userInput.requestEmployeeId();
 		return workDoneDao.insertData(workDoneDate,hoursWorked,remarks,projectId,employeeId);
 	}
 	

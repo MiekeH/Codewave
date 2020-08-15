@@ -50,7 +50,7 @@ public class UserInputServices {
 		String PhoneNumber = keyboard.nextLine();
 
 		if (!PhoneNumber.startsWith("0") || PhoneNumber.length() <= 9) {
-			System.out.println("you need to enter a phoneNumber with 9 digits starting with 0");
+			System.out.println("you need to enter a valid phoneNumber with 9 digits starting with 0");
 		}
 		keyboard.close();
 		return PhoneNumber;
@@ -62,7 +62,7 @@ public class UserInputServices {
 		String PhoneNumber_ICE = keyboard.nextLine();
 
 		if (!PhoneNumber_ICE.startsWith("0") || PhoneNumber_ICE.length() <= 10) {
-			System.out.println("you need to enter a phoneNumber with 10 digits starting with 0");
+			System.out.println("you need to enter a valid phoneNumber with 10 digits starting with 0");
 		}
 		keyboard.close();
 		return PhoneNumber_ICE;
@@ -170,5 +170,21 @@ public class UserInputServices {
         return inputHoursWorked;	
 	}
 	
+	
+	public int requestProjectId() {
+		Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter project id");
+        int projectId= scanner.nextInt();
+		return projectId;
+		
+	}
+
+
+	public int requestEmployeeId() {
+		Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter employee id");
+        int employeeId= scanner.nextInt();
+		return employeeId;
+	}
 	
 }

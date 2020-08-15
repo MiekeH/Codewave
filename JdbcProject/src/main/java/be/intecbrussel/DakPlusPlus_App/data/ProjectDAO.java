@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,10 +38,10 @@ public class ProjectDAO {
 		while (rs.next()) {
 			Project project = new Project();
 			project.setProjectId(rs.getInt("project_id"));
-			project.setProjectStartDate(rs.getDate("startDate"));
+			project.setProjectStartDate(rs.getDate("startDate").toLocalDate());
 			project.setDescription(rs.getString("description"));
 			project.setProjectPrice(rs.getDouble("price"));
-			project.(java.sql.Date)setProjectExpectedEndDate(rs.getDate("expectedEndDate"));
+			project.setProjectExpectedEndDate(rs.getDate("expectedEndDate").toLocalDate());
 			listOfProjects.add(project);
 		}
 		return listOfProjects;
@@ -57,10 +55,10 @@ public class ProjectDAO {
 		String sqlInsert = "INSERT INTO Project VALUES (NULL,?,?,?,?)";
 
 		PreparedStatement ps = connection.prepareStatement(sqlInsert);
-		ps.setDate(1, projectStartDate);
+		ps.setDate(1, java.sql.Date.valueOf(projectStartDate));
 		ps.setString(2, description);
 		ps.setDouble(3, projectPrice);
-		ps.setDate(4, projectExpectedEndDate);
+		ps.setDate(4, java.sql.Date.valueOf(projectExpectedEndDate));
 		ps.executeUpdate();
 		return projectNew;
 	}
