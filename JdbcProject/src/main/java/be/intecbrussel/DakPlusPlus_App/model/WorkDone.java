@@ -1,7 +1,6 @@
 package be.intecbrussel.DakPlusPlus_App.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class WorkDone {
 	private int WorkDoneId;

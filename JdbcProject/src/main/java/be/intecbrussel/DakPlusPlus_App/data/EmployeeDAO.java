@@ -1,11 +1,11 @@
 package be.intecbrussel.DakPlusPlus_App.data;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +17,6 @@ public class EmployeeDAO {
 		Connection connection = ConnectionFactory.getConnection();
 		Statement statement = connection.createStatement();
 		ResultSet rs = statement.executeQuery("SELECT * FROM Employee");
-
 		return listOfEmployees(rs);
 	}
 
@@ -33,7 +32,7 @@ public class EmployeeDAO {
 			employee.setLastName(rs.getString("lastName"));
 			employee.setPhoneNumber(rs.getString("phoneNumber"));
 			employee.setPhoneNumber_ICE(rs.getString("phoneNumber_ICE"));
-			employee.setDateOfBirth(rs.getDate("dateOfBirth"));
+			employee.setDateOfBirth(rs.getDate("dateOfBirth").toLocalDate());
 			employee.setSalaryMonth(rs.getDouble("salaryMonth"));
 			listOfEmployees.add(employee);
 		}
@@ -41,7 +40,7 @@ public class EmployeeDAO {
 	}
 
 	public Employee updateEmployeeData(int employeeId, String firstName, String lastName, String phoneNumber,
-			String phoneNumber_ICE, Date dateOfBirth, double salaryMonth) throws SQLException {
+			String phoneNumber_ICE, LocalDate dateOfBirth, double salaryMonth) throws SQLException {
 
 		Connection connection = ConnectionFactory.getConnection();
 		Employee employeeUpdated = new Employee();
@@ -55,17 +54,16 @@ public class EmployeeDAO {
 		ps.setString(2, lastName);
 		ps.setString(3, phoneNumber);
 		ps.setString(4, phoneNumber_ICE);
-		ps.setDate(5, dateOfBirth);
+		ps.setDate(5, java.sql.Date.valueOf(dateOfBirth));
 		ps.setDouble(6, salaryMonth);
 		ps.setInt(7, employeeId);
 		ps.executeUpdate();
-
-		ps.executeUpdate();
+		
 		return employeeUpdated;
 	}
 
 	public Employee insertEmployeeData(String firstName, String lastName, String phoneNumber, String phoneNumber_ICE,
-			Date dateOfBirth, double salaryMonth) throws SQLException {
+			LocalDate dateOfBirth, double salaryMonth) throws SQLException {
 
 		Employee employeeNew = new Employee();
 
@@ -77,7 +75,7 @@ public class EmployeeDAO {
 		ps.setString(2, lastName);
 		ps.setString(3, phoneNumber);
 		ps.setString(4, phoneNumber_ICE);
-		ps.setDate(5, dateOfBirth);
+		ps.setDate(5, java.sql.Date.valueOf(dateOfBirth));
 		ps.setDouble(6, salaryMonth);
 		ps.executeUpdate();
 

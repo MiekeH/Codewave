@@ -18,18 +18,12 @@ public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		// Structure of the Application:
-		//1. View Layer : Presentation Layer - Main Program -- Two menus
-		//2. Internal Calculations: Services package per type of services (accounting, projects, secretary and workDone)
-		//3. Data Layer: Data package (DAO) and Model package (Tables)
-		//4. Data validation Layer captured some checkpoints in UserInputServices, but would normally created specific
-		//package to check data entered by the user (accounting, secretary, project teams)
+		//View Layer : Presentation Layer - Main Program -- Two menus -- 
+		//Starts with Management View and then DataBase View TO BE FIXED TESTED
 		
-		//Note: some methods are not completely working as had to perform parsing from String to LocalDate to Dates 
-		
-		
-		//check functionality//
-		
-		
+		//1. Internal Calculations: Services package per type of services (accounting, projects, secretary and workDone)
+		//2. Data Layer: Data package connection with SQL (DAO) and Model package (Tables)
+		//3. Data Validation Layer captured some checkpoints in UserInputServices
 		
 		
 		System.out.println("Hi - Good Day - THIS IS YOUR APPLICATION DATABASE:");

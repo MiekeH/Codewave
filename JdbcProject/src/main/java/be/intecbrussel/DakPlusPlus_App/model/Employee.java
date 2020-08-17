@@ -1,19 +1,20 @@
 package be.intecbrussel.DakPlusPlus_App.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class Employee {
 	protected final static int LENGTH_PHONENUMBER_ICE =9;
 	protected final static int LENGTH_PHONENUMBER =10;
-	public static final String userInputService = null;
+	
+	
 	private int employeeId;
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private String phoneNumber_ICE;
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	private double salaryMonth;
 	
 	private boolean isPresent;
@@ -78,11 +79,11 @@ public class Employee {
 		}
 	
 
-	public Date getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -94,7 +95,7 @@ public class Employee {
 		this.salaryMonth = salaryMonth;
 	}
 	
-	
+	//check to use in validator package
 	public boolean isValidNumber() {
 			Stream.of(phoneNumber).filter(x->x.startsWith("0")&& x.length()<=LENGTH_PHONENUMBER);
 			Stream.of(phoneNumber_ICE).filter(x->x.startsWith("0")&& x.length()<LENGTH_PHONENUMBER_ICE);

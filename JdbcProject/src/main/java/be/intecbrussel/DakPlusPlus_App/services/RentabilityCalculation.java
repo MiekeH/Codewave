@@ -29,10 +29,11 @@ public class RentabilityCalculation {
 		double salaryMonth;
 		int hoursWorked;
 		
+		//from list to individual value??? and then add back to the list///or should be LIST?
 		double salaryDay = salaryMonth/workDaysPerMonth;
-		double salaryHour = salaryDay/workHoursPerDay;
+		double salaryHour = salaryDay/workHoursperDay;
 		double totalCostProject = (hoursWorked * salaryHour);
-		double totalPriceProject = rentabilityDao.getPriceperProject().
+		double totalPriceProject = rentabilityDao.getPriceperProject().parallelStream().peek(get???);
 		double rentability = totalPriceProject - totalCostProject;
 		
 		rentabilityList.add(totalPriceProject,totalCostProject);

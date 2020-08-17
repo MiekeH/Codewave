@@ -24,50 +24,49 @@ public class SecretaryServices {
 	static EmployeeDAO employeeDao = new EmployeeDAO();
 	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	
-	public static List<Employee> getEmployeesAtWork(){
+	public static List<Employee> getEmployeesAtWork() throws SQLException{
 		return ((Employee) employeeDao.getAllEmployees()).isPresent();
 	}
 	
-	public static void printEmployeesAtWork() {
+	public static void printEmployeesAtWork() throws SQLException {
 		System.out.println(getEmployeesAtWork());
 	}
 	
+	//CHECK STREAMS FUNCTIONALITY/
 	public static List<Employee> getBirthdayEmployees() {
-		Stream<Employee> employeeBirthDay= employeeDao.getAllEmployees()
+		List<Employee> employeeBirthDay= employeeDao.getAllEmployees()
 				.stream()
-				.filter(x->x.employee.getDateOfBirth().toLocalDate() ==LocalDate.now());
+				.filter(x->x.getDateOfBirth() == LocalDate.now()
+				.collect(Collectors.toList());
 						
 	return employeeBirthDay;
 	}
 	
+	//CHECK STREAMS FUNCTIONALITY/
+	public List<Employee> getBirthdayIn7DaysEmployees() throws SQLException {
+		LocalDate nowDate = LocalDate.now();
+		Employee employee = new Employee();
+		//.filter(x->x.ChronoUnit.DAYS.between((employee.getDateOfBirth()),nowDate) <= 7));
+		
+		List<Employee> employeeBirthDay = employeeDao.getAllEmployees()
+			.stream()
+			.filter(x->x.getDateOfBirth().isAfter(LocalDate.now().plusDays(7))
+			.collect(Collectors.toList()).forEach(System.out::println));
+	
+	return employeeBirthDay;
+	}
+      	
 	public static void printBirthDayList() {
 		System.out.println("Happy Birthday for following employee details:" + getBirthdayEmployees().toString());
 	}
 
-	public List<Employee> getBirthdayIn7DaysEmployees() {
-		LocalDate nowDate = LocalDate.now();
+	public static void getDetailsEmployees(String firstName, String lastName) throws SQLException {
 		Employee employee = new Employee();
-		//cast to Date of SQL?//birthday = (Date) sdf.parse(getInput())
-		List<Employee> employeeBirthDay= 
-				(List<Employee>) employeeDao.getAllEmployees()
-				.stream()
-				//.filter(x->x.ChronoUnit.DAYS.between(Date.valueOf(employee.getDateOfBirth()), nowDate) <= 7);
-		
-				.filter(x->x.employee.getDateOfBirth().toLocalDate().isAfter(LocalDate.now().plusDays(7)));
-	return employeeBirthDay;
-	}
-      	
-	
-	public Employee getDetailsEmployees (String firstName,String lastName ) throws SQLException {
-		
-		Employee employee = new Employee();
-		
-		employeeDao.getAllEmployees()
-		.stream()
-		.filter(x->x.employee.getFirstName()==firstName)|| (employee.getLastName()==lastName))
-		.collect(Collectors.toList())
-		.forEach(System.out::println);
-		
+
+		employeeDao.getAllEmployees().stream()
+				.filter(x -> x.getFirstName() == firstName || (employee.getLastName() == lastName))
+				.collect(Collectors.toList()).forEach(System.out::println);
+
 	}
 	
 	

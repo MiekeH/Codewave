@@ -12,6 +12,7 @@ import be.intecbrussel.DakPlusPlus_App.model.Project;
 import be.intecbrussel.DakPlusPlus_App.model.WorkDone;
 
 public class RentabilityDAO {
+	
 	public List<Project> getPriceperProject() throws SQLException {
 		List<Project> listOfProjects = new ArrayList<>();
 		Connection connection = ConnectionFactory.getConnection();
