@@ -8,9 +8,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import be.intecbrussel.DakPlusPlus_App.model.Employee;
-import be.intecbrussel.DakPlusPlus_App.model.Project;
 import be.intecbrussel.DakPlusPlus_App.model.WorkDone;
 
 public class WorkDoneDAO {
@@ -18,7 +15,10 @@ public class WorkDoneDAO {
 	public List<WorkDone> getProjectsEmployees() throws SQLException {
 		Connection connection = ConnectionFactory.getConnection();
 		Statement statement = connection.createStatement();
-		ResultSet rs = statement.executeQuery("SELECT * FROM Workdone");
+		ResultSet rs = statement.executeQuery("SELECT * FROM Workdone"
+				+ "INNER JOIN Employee ON Employee.employee_id = Workdone.employee_id"
+				+ "INNER JOIN Project ON Project.project_id = Workdone.project_id"
+				+ "ORDER BY Employee.employee_id");
 
 		return listOfEmployees(rs);
 	}

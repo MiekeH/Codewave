@@ -3,8 +3,6 @@ package be.intecbrussel.DakPlusPlus_App.services;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-
-
 import be.intecbrussel.DakPlusPlus_App.data.ProjectDAO;
 import be.intecbrussel.DakPlusPlus_App.model.Project;
 
@@ -26,7 +24,6 @@ public class ProjectServices {
 		double projectPrice = userInput.requestProjectPrice();
 		LocalDate projectStartDate =userInput.requestProjectStartDate();
 		LocalDate projectExpectedEndDate = userInput.requestProjectEndDate();
-		
 		return projectDao.insertProjectData(projectStartDate,description,projectPrice,projectExpectedEndDate);
 	}
 	

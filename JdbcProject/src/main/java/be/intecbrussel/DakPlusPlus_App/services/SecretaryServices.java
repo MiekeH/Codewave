@@ -36,8 +36,11 @@ public class SecretaryServices {
 	public static List<Employee> getBirthdayEmployees() {
 		List<Employee> employeeBirthDay= employeeDao.getAllEmployees()
 				.stream()
-				.filter(x->x.getDateOfBirth() == LocalDate.now()
-				.collect(Collectors.toList());
+				.map(x->x.getDateOfBirth()==LocalDate.now());
+			
+				
+//				.filter(x->x.getDateOfBirth() == LocalDate.now()
+//				.collect(Collectors.toList());
 						
 	return employeeBirthDay;
 	}
@@ -50,8 +53,8 @@ public class SecretaryServices {
 		
 		List<Employee> employeeBirthDay = employeeDao.getAllEmployees()
 			.stream()
-			.filter(x->x.getDateOfBirth().isAfter(LocalDate.now().plusDays(7))
-			.collect(Collectors.toList()).forEach(System.out::println));
+			.filter(x->x.employee.getDateOfBirth().isAfter(LocalDate.now().plusDays(7)));
+			//.collect(Collectors.toList()).forEach(System.out::println));
 	
 	return employeeBirthDay;
 	}
