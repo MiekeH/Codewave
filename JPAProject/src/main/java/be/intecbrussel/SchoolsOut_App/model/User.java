@@ -11,7 +11,7 @@ public class User {
 	private String passwordhash;
 	private boolean active;
 	
-	//@OneToOne(mappedBy = "user")
+	@OneToOne
 	private Person person;
 
 	public String getLogin() {

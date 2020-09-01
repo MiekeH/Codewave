@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Course {
@@ -17,8 +18,12 @@ private String code;
 private String imageURL;
 private boolean active;
 
-//OneToMany(mappedBy="course")
+@OneToMany(mappedBy ="course")
 private List<Module> module;
+
+//UML missing?
+//@ManytoMany
+//private Person person;
 
 public Long getId() {
 	return id;

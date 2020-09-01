@@ -17,7 +17,7 @@ public class Person {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
-	//@ManyToOne(mappedBy="person")
+	@ManyToOne
 	private Course course;
 	
 	public Integer getId() {

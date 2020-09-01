@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Exam {
@@ -16,7 +17,8 @@ public class Exam {
 	private LocalDate date;
 	private int weight;
 	private int total;
-//@ManyToOne(mappedBy = " ")
+	
+	@ManyToOne
 	private Module module;
 
 	public Long getId() {
