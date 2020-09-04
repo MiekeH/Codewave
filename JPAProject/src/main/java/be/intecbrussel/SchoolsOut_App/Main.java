@@ -9,50 +9,45 @@ import be.intecbrussel.SchoolsOut_App.model.Course;
 import be.intecbrussel.SchoolsOut_App.model.Exam;
 import be.intecbrussel.SchoolsOut_App.model.Person;
 import be.intecbrussel.SchoolsOut_App.model.User;
+import be.intecbrussel.SchoolsOut_App.services.CourseServices;
+import be.intecbrussel.SchoolsOut_App.services.ExamServices;
+import be.intecbrussel.SchoolsOut_App.services.GradeServices;
+import be.intecbrussel.SchoolsOut_App.services.ModuleServices;
+import be.intecbrussel.SchoolsOut_App.services.PersonServices;
+import be.intecbrussel.SchoolsOut_App.services.UserServices;
 
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("datasource");
-		EntityManager em = emf.createEntityManager();
+		UserServices userServices = new UserServices();
+		userServices.insertNewUser("gio","234",true,null);
+		userServices.readUser(5);
+		userServices.updateUser("kik", "shiiti", true, null);
+		userServices.deleteUser();
 		
-//		em.getTransaction().begin();
-//		
-//		em.getTransaction().commit();
-//		
-//		em.close();
-//		emf.close();
+		PersonServices personServices = new PersonServices();
 		
 		
-		
-		User user = new User().setLogin("name");
-		Person person = new Person().setFirstName("charles").setFamilyName("caps");
-		Course course = new Course().setName("physic").setCode("24");
-		Exam exam = new Exam().setDescription("Exam PartI");
+		ModuleServices moduleServices = new ModuleServices();
 		
 		
-		EntityTransaction et = em.getTransaction();
-		
-		et.begin();
-		em.persist(user);
-		em.persist(person);
-		em.persist(course);
-		em.persist(exam);
-		et.commit();
-		
-		emf.close();
-		
-		//find data
+		ExamServices examServices = new ExamServices();
 		
 		
-		//delete entries
-		//message message = em.find(Product.class, 2)
-		//em.getTransaction§).begin();
-		//em.remove(message);
-		//em.getTransaction().commit();
+		CourseServices courseServices = new CourseServices();
 		
+		
+		
+		GradeServices gradeServices = new GradeServices();
+		
+		
+		
+		
+		
+		
+
 		
 
 	}
