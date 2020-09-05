@@ -6,42 +6,24 @@ import be.intecbrussel.SchoolsOut_App.model.User;
 
 public class UserServices {
 
-	public  User insertNewUser(String login, String passwordhash, boolean active,Person person)  {
-        User user=new User()
-        .setLogin(login)
-        .setPasswordhash(passwordhash)
-        .setActive(active)
-        .setPerson(person);
-        return UserRepository.insertNewUser(user);
+	public User insertNewUser(String login, String passwordhash, boolean active, Person person) {
+		User user = new User().setLogin(login).setPasswordhash(passwordhash).setActive(active).setPerson(person);
+		return UserRepository.insertNewUser(user);
 	}
-	
-	public User readUser(int index) {
-		return UserRepository.readUser(index);
+
+	public User readUser(String login) {
+		return UserRepository.readUser(login);
 	}
-	
-	public User updateUser(String login, String passwordhash, boolean active,Person person) {
-		User user = new User()
-			.setLogin(login)
-			.setPasswordhash(passwordhash)
-			.setActive(active)
-			.setPerson(person);
+
+	public User updateUser(String login, String passwordhash, boolean active, Person person) {
+		User user = new User().setLogin(login).setPasswordhash(passwordhash).setActive(active).setPerson(person);
 		return UserRepository.updateUser(user);
 	}
-	
-	
-	
-	public  User deleteUser()  {
-        //how to find details to delete?
-		
-		User user=new User()
-        .setLogin("vgift")
-        .setPasswordhash("gyuft")
-        .setActive(true)
-        .setPerson(null);
-        return UserRepository.deleteUser(user);
+
+	public User deleteUser(User user) {
+		return UserRepository.deleteUser(user);
 	}
-	
-	//should be static to UserRepository allUserslist or just by creating an instance of UserRepository?
+
 	public void printListAllusers() {
 		UserRepository.AllUsers().forEach(System.out::println);
 	}

@@ -1,5 +1,6 @@
 package be.intecbrussel.SchoolsOut_App.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,7 +18,7 @@ public class Person {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Course course;
 	
 	public Integer getId() {
@@ -64,5 +65,14 @@ public class Person {
 		this.course=course;
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", firstName=" + firstName + ", familyName=" + familyName + ", gender=" + gender
+				+ ", course=" + course + "]";
+	}
+	
+	
+	
 	
 }

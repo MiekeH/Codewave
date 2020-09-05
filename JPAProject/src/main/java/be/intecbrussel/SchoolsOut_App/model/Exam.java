@@ -85,6 +85,12 @@ public class Exam {
 		return this;
 	}
 
+	@Override
+	public String toString() {
+		return "Exam [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date + ", weight="
+				+ weight + ", total=" + total + ", module=" + module + "]";
+	}
+
 	
 	
 }

@@ -35,11 +35,11 @@ public class UserRepository {
 		return new User();
 	}
 	
-	public static User readUser (int index){
+	public static User readUser (String login){
 		EntityManager em = new EntityManagerProvider().getEntityManager();
-		User user = em.find(User.class,index);
-		user.toString();
-		return null;
+		User user = em.find(User.class,login);
+		System.out.println(user.toString());
+		return user;
 	}
 	
 	
@@ -51,20 +51,20 @@ public class UserRepository {
 		return user;
 	}
 	
-	public StringBuilder deleteUserWithIndex (int index){
+	public StringBuilder deleteUserWithIndex (String login){
 		EntityManager em = new EntityManagerProvider().getEntityManager();
-		User user = em.find(User.class,index);
+		User user = em.find(User.class,login);
 		em.getTransaction().begin();
 		em.remove(user);
 		em.getTransaction().commit();
 		StringBuilder sb = new StringBuilder();
 		sb.append(user);
-		StringBuilder message = sb.append("you have deleted Userrecord with index" +index);
+		StringBuilder message = sb.append("you have deleted Userrecord with index" +login);
 		return message;
 		
 	}
 	
-	//optioné link with userservices to detail which user to delete
+	
 	public static User deleteUser (User user){
 		EntityManager em = new EntityManagerProvider().getEntityManager();
 		em.getTransaction().begin();
@@ -76,7 +76,6 @@ public class UserRepository {
 	}
 	
 	
-	//list of all users
 	public static List<User>AllUsers(){
 		EntityManager em = new EntityManagerProvider().getEntityManager();
 		List<User> result = em.createQuery( "from User", User.class).getResultList();

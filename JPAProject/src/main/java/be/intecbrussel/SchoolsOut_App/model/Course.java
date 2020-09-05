@@ -3,6 +3,7 @@ package be.intecbrussel.SchoolsOut_App.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -18,7 +19,8 @@ private String code;
 private String imageURL;
 private boolean active;
 
-@OneToMany(mappedBy ="course")
+//add fetch type eager, standard setting is lazy
+@OneToMany(mappedBy ="course", fetch=FetchType.EAGER)
 private List<Module> module;
 
 //UML missing?
@@ -85,6 +87,12 @@ public List<Module> getModule() {
 public Course setModule(List<Module> module) {
 	this.module = module;
 	return this;
+}
+
+@Override
+public String toString() {
+	return "Course [id=" + id + ", name=" + name + ", description=" + description + ", code=" + code + ", imageURL="
+			+ imageURL + ", active=" + active + ", module=" + module + "]";
 }
 
 

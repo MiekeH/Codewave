@@ -19,6 +19,7 @@ public class Module {
 	@ManyToOne
 	private Course course;
 	
+	
 	@OneToMany(mappedBy ="module")
 	private List<Exam> exams;
 
@@ -66,5 +67,12 @@ public class Module {
 		this.exams = exams;
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		return "Module [id=" + id + ", name=" + name + ", description=" + description + ", course=" + course
+				+ ", exams=" + exams + "]";
+	}
 		
+	
 }
