@@ -1,11 +1,14 @@
 package be.intecbrussel.SchoolsOut_App.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,7 +22,12 @@ public class Person {
 	private Gender gender;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
-	private Course course;
+	private Course courseActive;
+	
+	//check if oneToMany
+	@ManyToMany
+	List<Course> courseHistory;
+	
 	
 	public Integer getId() {
 		return id;
@@ -58,18 +66,20 @@ public class Person {
 	}
 	
 	public Course getCourse() {
-		return course;
+		return courseActive;
 	}
 	
-	public Person setCourse(Course course) {
-		this.course=course;
+	public Person setCourse(Course courseActive) {
+		//add ? statement link with Course entity for active boolean ==true
+		Course course = new Course().setActive(true);
+		this.courseActive=courseActive;
 		return this;
 	}
 
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", familyName=" + familyName + ", gender=" + gender
-				+ ", course=" + course + "]";
+				+ ", course=" + courseActive + "]";
 	}
 	
 	

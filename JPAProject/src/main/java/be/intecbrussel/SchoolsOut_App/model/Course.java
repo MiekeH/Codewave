@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -14,18 +15,18 @@ public class Course {
 @GeneratedValue
 private Long id;
 private String name;
+@Lob
 private String description;
 private String code;
 private String imageURL;
+
+//@OneToMany(mappedBy = "courseActive")
 private boolean active;
 
 //add fetch type eager, standard setting is lazy
 @OneToMany(mappedBy ="course", fetch=FetchType.EAGER)
 private List<Module> module;
 
-//UML missing?
-//@ManytoMany
-//private Person person;
 
 public Long getId() {
 	return id;
@@ -76,6 +77,7 @@ public boolean isActive() {
 }
 
 public Course setActive(boolean active) {
+	//?? or make link here with Person course active
 	this.active = active;
 	return this;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import be.intecbrussel.SchoolsOut_App.model.Exam;
+import be.intecbrussel.SchoolsOut_App.model.Grade;
 
 
 public class ExamRepository {
@@ -53,6 +54,26 @@ public class ExamRepository {
 		em.close();
 		return result;
 	}
+	
+	
+	
+	//NEW retrieve list of Exams and SubExams from Database
+	public static List<Exam> AllExamsSubExams() {
+		EntityManager em = new EntityManagerProvider().getEntityManager();
+		//add if function empty list
+		
+		List<Exam> result1 = em.createQuery("from Exam", Exam.class).getResultList();
+		List<Exam> result2 = em.createQuery("from Exam_Exam",Exam.class).getResultList();
+		//check empty list
+		em.getTransaction().begin();
+		em.getTransaction().commit();
+		em.close();
+		return result1;
+	}
+
+
+	
+	
 	
 	
 }

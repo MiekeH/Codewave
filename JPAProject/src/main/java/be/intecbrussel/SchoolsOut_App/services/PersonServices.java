@@ -8,6 +8,8 @@ import be.intecbrussel.SchoolsOut_App.model.Person;
 import be.intecbrussel.SchoolsOut_App.model.User;
 
 public class PersonServices {
+//update with new properties	
+
 	public Person insertNewPerson(String firstName, String familyName, Gender gender, Course course) {
 		Person person = new Person().setFirstName(firstName).setFamilyName(familyName).setGender(gender)
 				.setCourse(course);

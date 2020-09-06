@@ -1,11 +1,15 @@
 package be.intecbrussel.SchoolsOut_App.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Exam {
@@ -13,6 +17,7 @@ public class Exam {
 	@GeneratedValue
 	private Long id;
 	private String name;
+	@Lob
 	private String description;
 	private LocalDate date;
 	private int weight;
@@ -20,6 +25,12 @@ public class Exam {
 	
 	@ManyToOne
 	private Module module;
+	
+	@ManyToOne
+	private Exam examGroup;
+	
+	@OneToMany(mappedBy = "examGroup", fetch = FetchType.EAGER)
+	private List<Exam> subExams;
 
 	public Long getId() {
 		return id;
@@ -84,12 +95,35 @@ public class Exam {
 		this.module = module;
 		return this;
 	}
+	
+	
+	public Exam getExamGroup() {
+		return examGroup;
+	}
+
+	public Exam setExamGroup(Exam examGroup) {
+		this.examGroup = examGroup;
+		return this;
+	}
+
+	public List<Exam> getSubExams() {
+		return subExams;
+	}
+
+	public Exam setSubExams(List<Exam> subExams) {
+		this.subExams = subExams;
+		return this;
+	}
 
 	@Override
 	public String toString() {
 		return "Exam [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date + ", weight="
-				+ weight + ", total=" + total + ", module=" + module + "]";
+				+ weight + ", total=" + total + ", module=" + module + ", examGroup=" + examGroup + ", subExams="
+				+ subExams + "]";
 	}
+
+	
+	
 
 	
 	
