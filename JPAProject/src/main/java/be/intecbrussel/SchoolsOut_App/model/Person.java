@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
@@ -21,7 +22,8 @@ public class Person {
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	
+	@ManyToOne(cascade= {CascadeType.PERSIST})
 	private Course courseActive;
 	
 	//check if oneToMany

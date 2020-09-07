@@ -19,8 +19,6 @@ private String name;
 private String description;
 private String code;
 private String imageURL;
-
-//@OneToMany(mappedBy = "courseActive")
 private boolean active;
 
 //add fetch type eager, standard setting is lazy

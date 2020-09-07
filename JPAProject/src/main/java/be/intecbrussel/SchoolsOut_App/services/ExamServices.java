@@ -10,6 +10,8 @@ import be.intecbrussel.SchoolsOut_App.model.Module;
 
 public class ExamServices {
 	
+	//check logic how to set up efficiently:
+	
 	public Exam insertExamDetailsToGroup(String name, String description, LocalDate date, int weight, int total, Module module) {
 		Exam examGroup = new Exam().setName(name).setDescription(description).setDate(date).setWeight(weight).setTotal(total)
 				.setModule(module);

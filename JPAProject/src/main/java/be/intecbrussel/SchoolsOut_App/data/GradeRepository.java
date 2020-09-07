@@ -1,7 +1,10 @@
 package be.intecbrussel.SchoolsOut_App.data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
+import be.intecbrussel.SchoolsOut_App.model.Course;
 import be.intecbrussel.SchoolsOut_App.model.Exam;
 import be.intecbrussel.SchoolsOut_App.model.Grade;
 
@@ -44,8 +47,18 @@ public class GradeRepository {
 		StringBuilder message = sb.append("you have deleted Userrecord with index" +index);
 		return message;
 		}
+
+
+	public static List<Grade> AllGrades() {
+		EntityManager em = new EntityManagerProvider().getEntityManager();
+		List<Grade> result = em.createQuery("from Grade", Grade.class).getResultList();
+		em.getTransaction().begin();
+		em.getTransaction().commit();
+		em.close();
+		return result;
+	}
 		
 	}
 
 	
-}
+

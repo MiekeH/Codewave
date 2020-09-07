@@ -3,6 +3,7 @@ package be.intecbrussel.SchoolsOut_App.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Exam {
 	@ManyToOne
 	private Exam examGroup;
 	
-	@OneToMany(mappedBy = "examGroup", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "examGroup", cascade = CascadeType.PERSIST)
 	private List<Exam> subExams;
 
 	public Long getId() {

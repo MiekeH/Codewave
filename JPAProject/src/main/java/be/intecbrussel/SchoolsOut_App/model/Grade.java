@@ -19,6 +19,7 @@ public class Grade {
 	@ManyToOne
 	private Exam exam;
 	
+	
 	private BigDecimal gradeValue;
 	private String comment;
 	private String internalComment;

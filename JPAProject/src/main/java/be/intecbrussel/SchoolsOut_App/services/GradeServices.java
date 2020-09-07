@@ -3,6 +3,7 @@ package be.intecbrussel.SchoolsOut_App.services;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import be.intecbrussel.SchoolsOut_App.data.CourseRepository;
 import be.intecbrussel.SchoolsOut_App.data.GradeRepository;
 import be.intecbrussel.SchoolsOut_App.model.Exam;
 import be.intecbrussel.SchoolsOut_App.model.Grade;
@@ -36,6 +37,10 @@ public class GradeServices {
 
 	public StringBuilder deleteGradeWithIndex(Long index) {
 		return GradeRepository.deleteGradeWithIndex(index);
+	}
+	
+	public void printListAllGrades() {
+		GradeRepository.AllGrades().forEach(System.out::println);
 	}
 
 }
